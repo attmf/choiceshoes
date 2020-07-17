@@ -1,5 +1,5 @@
 {% load static %}
-  
+
 <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
@@ -11,5 +11,23 @@
 <script type="text/javascript">
   // Animations initialization
   new WOW().init();
+</script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+    });
 
+    $('#dismiss, .overlay').on('click', function () {
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').addClass('active');
+      $('.overlay').addClass('active');
+      $('.collapse.in').toggleClass('in');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+  });
 </script>

@@ -1,64 +1,108 @@
 {% load cart_template_tags %}
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-    <div class="container">
+{% load static %}
 
-      <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="/">
-        <strong class="blue-text">DJe-commerce</strong>
+<header class="container">
+  <div class="d-lg-none d-md-none">
+    <div class="overlay"></div>
+    <nav class="m-menu bg-white fixed-top">
+      <div class="container d-flex flex-row justify-content-around align-items-center py-3 border-bottom border-light">
+        <div type="button" id="sidebarCollapse">
+          <img src="{% static 'img/svg/menu.svg' %}" alt="menu" class="icon-menu">
+        </div>
+        <a href="/" class="color-at">
+          <p class="logo-name ml-3">Choice Shoes</p>
+        </a>
+        <div class="d-flex justify-content-between">
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'core:order-summary' %}">
+            <img src="{% static 'img/svg/heart.svg' %}" alt="menu" class="icon-menu">
+          </a>
+          <a href="{% url 'core:order-summary' %}">
+            <img src="{% static 'img/svg/cart.svg' %}" alt="menu" class="icon-menu">
+            <span class="badge badge-cart red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+          </a>
+          {% else %}
+          <a href="{% url 'account_login' %}">
+            <img src="{% static 'img/svg/heart.svg' %}" alt="menu" class="icon-menu">
+            <img src="{% static 'img/svg/cart.svg' %}" alt="menu" class="icon-menu">
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <nav id="sidebar">
+      <div id="dismiss">
+        <i class="fas fa-arrow-left">aaa</i>
+      </div>
+      <a href="/" class="color-at">
+        <p class="logo-name ml-3">Choice Shoes</p>
       </a>
 
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-          {% comment %} <li class="nav-item active">
-            <a class="nav-link waves-effect" href="/">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="/checkout">
-            Checkout</a>
-          </li> {% endcomment %}
-        </ul>
-
-        <!-- Right -->
-        <ul class="navbar-nav nav-flex-icons">
+      <div class="list-unstyled components dropdown-mobile d-flex flex-column">
+        <a class="pl-4 py-2 color-at" href="#pageMasculino" data-toggle="collapse" aria-expanded="false">Masculino</a>
+        <div class="collapse list-unstyled bg-gray" id="pageMasculino">
+          <a href="listprodutos.html" class="h5 m-0 font-weight-light footer-item">Tenis</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Chuteira</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Calçados</a>
+        </div>
+        <a class="pl-4 py-2 color-at" href="#pageFeminino" data-toggle="collapse" aria-expanded="false">Feminino</a>
+        <div class="collapse list-unstyled bg-gray" id="pageFeminino">
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Tenis</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Chuteira</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Calçados</a>
+        </div>
+        <a class="pl-4 py-2 color-at" href="#pageInfantil" data-toggle="collapse" aria-expanded="false">Infantil</a>
+        <div class="collapse list-unstyled bg-gray" id="pageInfantil">
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Tenis</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Chuteira</a>
+          <a href="#" class="h5 m-0 font-weight-light footer-item">Calçados</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <form class="form-inline my-2">
+        <input class="form-control search-input border-light" type="search" placeholder="Qual seu tipo de calçado?"
+          aria-label="Search">
+        <button class="btn btn-search m-0" type="submit"><img src="{% static 'img/svg/search.svg' %}" alt="menu"
+            class="icon-search"></button>
+      </form>
+    </div>
+  </div>
+  <div class="d-lg-block d-md-block d-none fixed-top">
+    <nav class="bg-white">
+      <div class="container d-flex flex-row justify-content-around align-items-center py-3 border-bottom border-light">
+        <a href="/" class="color-at col-3">
+          <p class="logo-name">Choice Shoes</p>
+        </a>
+        <form class="form-inline col-8">
+          <input class="form-control search-input border-light" type="search" placeholder="Qual seu tipo de calçado?"
+            aria-label="Search">
+          <button class="btn btn-search m-0" type="submit"><img src="{% static 'img/svg/search.svg' %}" alt="menu"
+              class="icon-search"></button>
+        </form>
+        <div class="d-flex justify-content-around col-1">
           {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
-              <span class="clearfix d-none d-sm-inline-block"> Logout </span>
-            </a>
-          </li>
+          <a href="{% url 'core:order-summary' %}">
+            <img src="{% static 'img/svg/heart.svg' %}" alt="menu" class="icon-menu">
+          </a>
+          <a href="{% url 'core:order-summary' %}">
+            <img src="{% static 'img/svg/cart.svg' %}" alt="menu" class="icon-menu">
+            <span class="badge badge-cart red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+          </a>
           {% else %}
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
-              <span class="clearfix d-none d-sm-inline-block"> Login </span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
-              <span class="clearfix d-none d-sm-inline-block"> Signup </span>
-            </a>
-          </li>
+          <a href="{% url 'account_login' %}">
+            <img src="{% static 'img/svg/heart.svg' %}" alt="menu" class="icon-menu">
+          </a>
+          <a href="{% url 'account_login' %}">
+            <img src="{% static 'img/svg/cart.svg' %}" alt="menu" class="icon-menu">
+          </a>
           {% endif %}
-        </ul>
+        </div>
       </div>
 
+    </nav>
+    <div class="container">
     </div>
-  </nav>
+  </div>
+</header>

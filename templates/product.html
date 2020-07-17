@@ -2,124 +2,83 @@
 
 {% block content %}
 
-  <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+<section>
+  <div class="d-none d-md-block d-lg-block mt-5">
+    <div class="row">
+      <div class="col-3">
+        <p class="color-at m-0 h3">{{ object.title }}</p>
+        {{ object.description }}
+      </div>
+      <div class="col-5">
+        <img src="{{ object.image.url }}" alt="{{ object.title }}" class="w-100 m-0">
+      </div>
+      <div class="col-4">
 
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
-
+        <div class="d-flex color-at">
+          {% if object.discount_price %}
+          <p class="m-1 h2">R$ {{ object.discount_price }}</p>
+          <p class="m-1 text-black-50"><strike>R$ {{ object.price }}</strike></p>
+          {% else %}
+          <p class="m-1 h2">R$ {{ object.price }}</p>
+          {% endif %}
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <!--Content-->
-          <div class="p-4">
-
-            <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">{{ object.get_category_display }}</span>
-              </a>
-            </div>
-
-            <p class="lead">
-              {% if object.discount_price %}
-              <span class="mr-1">
-                <del>${{ object.price }}</del>
-              </span>
-              <span>${{ object.discount_price }}</span>
-              {% else %}
-              <span>${{ object.price }}</span>
-              {% endif %}
-            </p>
-
-            <p class="lead font-weight-bold">Description</p>
-
-            <p>{{ object.description }}</p>
-
-            {% comment %} <form class="d-flex justify-content-left">
-              <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">
-                Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-
-            </form> {% endcomment %}
-            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
-              Add to cart
-              <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
-            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
-              Remove from cart
-            </a>
-
+        <p class="m-1"><span class="text-black-50">Cor: </span>Creme</p>
+        <div class="d-flex mt-3">
+          <img src="{{ object.image.url }}" alt="produto" class="img-prod-item">
+          <img src="{{ object.image.url }}" alt="produto" class="img-prod-item">
+          <img src="{{ object.image.url }}" alt="produto" class="img-prod-item">
+        </div>
+        <p class="color-at mt-4">Qual seu tamanho?</p>
+        <div class="d-flex">
+          <div class="p-2 mr-2 border rounded">36</div>
+          <div class="p-2 mr-2 border rounded">37</div>
+          <div class="p-2 mr-2 border rounded">38</div>
+        </div>
+        <a href="{{ object.get_add_to_cart_url }}">
+          <div class="btn bg-color-at text-white mt-4">
+            <p class="text-uppercase m-0">eu quero</p>
           </div>
-          <!--Content-->
-
-        </div>
-        <!--Grid column-->
-
+        </a>
       </div>
-      <!--Grid row-->
-
-      <hr>
-
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
-
-          <h4 class="my-4 h4">Additional information</h4>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
     </div>
-  </main>
+  </div>
+  <p class="color-at text-center font-weight-light h5 mt-4">Veja também</p>
+  {% for item in object_list %}
+  <div class="w-100 p-1 col-lg-4 col-md-4 col-12 mb-3">
+    <div class="text-center">
+      <a href="{{ item.get_absolute_url }}">
+        <img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
+        <p class="color-at m-0">{{ item.title }}</p>
+        <div class="d-block d-sm-flex justify-content-center">
+          {% if item.discount_price %}
+          <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
+          <p class="m-1">R$ {{ item.discount_price }}</p>
+          {% else %}
+          <p class="m-1">R$ {{ item.price }}</p>
+          {% endif %}
+        </div>
+        <div class="btn bg-color-at text-white mt-2">
+          <p class="text-uppercase m-0">eu quero</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="fixed-bottom row bg-white p-1 shadow-lg">
+    <div class="col-2">
+      <img src="{{ object.image.url }}" alt="produto" class="img-prod-sm">
+    </div>
+    <div class="col-4 d-flex align-items-center mx-3">
+      <p class="m-0">R$ 129.90</p>
+    </div>
+    <div class="col-3 d-flex align-items-center">
+      <a href="{{ object.get_add_to_cart_url }}">
+        <div class="btn bg-color-at text-white float-right">
+          <p class="text-uppercase m-0">comprar</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 {% endblock content %}
