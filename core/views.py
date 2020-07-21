@@ -95,7 +95,7 @@ class CheckoutView(View):
                             self.request, "Nenhum endereço de entrega padrão disponível")
                         return redirect('core:checkout')
                 else:
-                    print("User is entering a new shipping address")
+                    print("O usuário está inserindo um novo endereço de cobrança")
                     shipping_address1 = form.cleaned_data.get(
                         'shipping_address')
                     shipping_address2 = form.cleaned_data.get(
@@ -213,7 +213,7 @@ class PaymentView(View):
             context = {
                 'order': order,
                 'DISPLAY_COUPON_FORM': False,
-                'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUBLIC_KEY
+                'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY
             }
             userprofile = self.request.user.userprofile
             if userprofile.one_click_purchasing:
@@ -364,6 +364,19 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return redirect("/")
 
 
+class ItemCategory(View):
+    def get(self, *args, **kwargs):
+        try:
+            item = Item.objects.all()
+            context = {
+                'object': item
+            }
+            return render(self.request, 'home2.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "Você não possui pedidos")
+            return redirect("/")
+
+
 class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
@@ -417,7 +430,8 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             order_item.delete()
-            messages.info(request, "Este produto foi removido do seu carrinho.")
+            messages.info(
+                request, "Este produto foi removido do seu carrinho.")
             return redirect("core:order-summary")
         else:
             messages.info(request, "Este item não estava no seu carrinho")
