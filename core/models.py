@@ -7,20 +7,27 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
+    ('Tênis', 'Tênis'),
+    ('Chuteira', 'Chuteira'),
+    ('Calçados', 'Calçados')
 )
 
 LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
+    ('Masculino', 'Masculino'),
+    ('Feminino', 'Feminino'),
+    ('Infantil', 'Infantil')
 )
 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
     ('S', 'Shipping'),
+)
+
+
+DESTAQUES_CHOICES = (
+    ('Imperdíveis', 'Imperdíveis'),
+    ('Nossas Ofertas', 'Nossas Ofertas'),
+    ('Destaques', 'Destaques'),
 )
 
 
@@ -37,9 +44,11 @@ class UserProfile(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
+    stock = models.IntegerField()
     discount_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
+    label = models.CharField(choices=LABEL_CHOICES, max_length=20)
+    group = models.CharField(choices=DESTAQUES_CHOICES, max_length=20)
     slug = models.SlugField()
     description = models.TextField()
     image = models.ImageField()

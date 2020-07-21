@@ -6,10 +6,10 @@
     <img src="assets/images/banner01.png" alt="banner" class="w-100">
   </div>
   <div class="container">
-    <p class="color-at text-center font-weight-light h5 mt-4 mb-2">Imperdíveis</p>
+    {% for item in object_list %}
+    <p class="color-at text-center font-weight-light h5 mt-4 mb-2">{{ item.label }}</p>
     <div class="row" id="produtos-carousel">
 
-      {% for item in object_list %}
       <div class="w-100 p-1 col-lg-4 col-md-4 col-12 mb-3">
         <div class="text-center">
           <a href="{{ item.get_absolute_url }}">
@@ -29,8 +29,8 @@
           </a>
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
     <!--Section: Products v.3-->
 
     <!--Pagination-->
