@@ -71,10 +71,12 @@ class Item(models.Model):
         })
 
 
-class ItemSize(models.Model):
+class ItemDetail(models.Model):
     size = models.IntegerField()
+    color = models.CharField(max_length=7, blank=False, null=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     stock = models.IntegerField()
+    image = models.ImageField()
 
     def __str__(self):
         return self.item.title

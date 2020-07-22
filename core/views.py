@@ -31,7 +31,7 @@ def products(request):
 
 def itemCategory(request, sec, cat):
     context = {
-        'items': Item.objects.raw('SELECT * FROM "core_item" WHERE "core_item"."category" like "' + str(cat) + '" AND "core_item"."label" like "' + str(sec) + '"')
+        'items': Item.objects.raw('SELECT * FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_item"."category" like "' + str(cat) + '" AND "core_item"."label" like "' + str(sec) + '" AND "core_itemdetail"."stock" > 0 LIMIT 1')
     }
     return render(request, "categories.html", context)
 
