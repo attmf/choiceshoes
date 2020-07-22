@@ -31,7 +31,7 @@ def products(request):
 
 def itemCategory(request, sec, cat):
     context = {
-        'items': Item.objects.raw('SELECT * FROM "core_item" WHERE "core_item"."category" like "' + str(cat) + '"')
+        'items': Item.objects.raw('SELECT * FROM "core_item" WHERE "core_item"."category" like "' + str(cat) + '" AND "core_item"."label" like "' + str(sec) + '"')
     }
     return render(request, "categories.html", context)
 
