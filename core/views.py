@@ -29,6 +29,13 @@ def products(request):
     return render(request, "products.html", context)
 
 
+def itemCategory(request, sec, cat):
+    context = {
+        'items': Item.objects.raw('SELECT * FROM "core_item" WHERE "core_item"."category" like "' + str(cat) + '"')
+    }
+    return render(request, "categories.html", context)
+
+
 def is_valid_form(values):
     valid = True
     for field in values:
@@ -364,17 +371,13 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return redirect("/")
 
 
-class ItemCategory(View):
-    def get(self, *args, **kwargs):
-        try:
-            item = Item.objects.all()
-            context = {
-                'object': item
-            }
-            return render(self.request, 'home2.html', context)
-        except ObjectDoesNotExist:
-            messages.warning(self.request, "Você não possui pedidos")
-            return redirect("/")
+class ItemCategoryView(View):
+    def get(request, slug):
+        item = get_object_or_404(Item, category=category)
+        context = {
+            'object': item
+        }
+        return render(self.request, 'home.html', context)
 
 
 class ItemDetailView(DetailView):

@@ -7,9 +7,9 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('Tênis', 'Tênis'),
+    ('Tenis', 'Tenis'),
     ('Chuteira', 'Chuteira'),
-    ('Calçados', 'Calçados')
+    ('Calcados', 'Calcados')
 )
 
 LABEL_CHOICES = (
@@ -25,7 +25,7 @@ ADDRESS_CHOICES = (
 
 
 DESTAQUES_CHOICES = (
-    ('Imperdíveis', 'Imperdíveis'),
+    ('Imperdiveis', 'Imperdiveis'),
     ('Nossas Ofertas', 'Nossas Ofertas'),
     ('Destaques', 'Destaques'),
 )
@@ -44,7 +44,6 @@ class UserProfile(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
-    stock = models.IntegerField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
     label = models.CharField(choices=LABEL_CHOICES, max_length=20)
@@ -70,6 +69,15 @@ class Item(models.Model):
         return reverse("core:remove-from-cart", kwargs={
             'slug': self.slug
         })
+
+
+class ItemSize(models.Model):
+    size = models.IntegerField()
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    stock = models.IntegerField()
+
+    def __str__(self):
+        return self.item.title
 
 
 class OrderItem(models.Model):
