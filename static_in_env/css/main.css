@@ -73,7 +73,7 @@
     color: #8c8c8c;
     display: block;
     width: 100%;
-    border-top: 1px solid #E6E6E6;
+    border-top: 1px solid #FFFFFF;
 
 }
 
@@ -220,4 +220,23 @@ p {
     position: absolute !important;
     border-radius: 10px !important;
     font-size: 9px !important;
+}
+
+.theme-footer {
+    border-top: 4px solid #57D4CF;
+    background-color: #57D4CF33;
+}
+
+.footer-links {
+    font-size: 18px;
+    color: #777777;
+    font-family: 'Roboto', sans-serif;
+}
+
+.theme-color-1 {
+    color: #57D4CF;
+}
+
+.theme-bgcolor-1 {
+    background-color: #57D4CF;
 }
