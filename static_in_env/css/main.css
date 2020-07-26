@@ -257,7 +257,19 @@ p {
     font-size: 18px;
 }
 
+#carouselExampleControls {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
+    #carouselExampleControls {
+        display: block;
+    }
+
+    #produtos-carousel-destaques {
+        display: none;
+    }
+
     .footer-section>div {
         margin-bottom: 10px;
     }
