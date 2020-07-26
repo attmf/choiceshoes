@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block style %}
+input[type="radio"] {
+    visibility: hidden;
+}
 
+
+input[type="radio"]:checked+label {
+    border: #57D4CF solid 2px;
+    border-radius: 2px;
+    padding: 0px!important;
+}
+{% endblock style %}
+
+{% block content %}
 <section>
   <div class="d-none d-md-block d-lg-block mt-5">
-    {% for item in items %}
+  {% for item in items %}
     <div class="row">
       <div class="col-3">
         <p class="color-at m-0 h3">{{ item.title }}</p>
@@ -23,19 +35,20 @@
           <p class="m-1 h2">R$ {{ item.price }}</p>
           {% endif %}
         </div>
-        {% endfor %}
         <p class="m-1"><span class="text-black-50">Cor: </span>Creme</p>
         <div class="d-flex mt-3">
-          {% for item in itemsDetail %}
-          <img src="{{ item.image.url }}" alt="produto" class="img-prod-item">
-          {% endfor %}
+        {% for item in itemsDetail %}
+        <input type="radio" name="cor" id="{{ item.color }}" checked="checked"/>
+        <label for="{{ item.color }}"><img src="{{ item.image.url }}" alt="produto" class="img-prod-item"></label>
+        {% endfor %}
         </div>
-
+        
         <p class="color-at mt-4">Qual seu tamanho?</p>
         <div class="d-flex">
-          {% for item in itemsDetail %}
-          <div class="p-2 mr-2 border rounded">{{ item.size }}</div>
-          {% endfor %}
+        {% for item in itemsDetail %}
+          <input type="radio" name="tamanho" id="{{ item.size }}" checked="checked"/>
+          <label for="{{ item.size }}"><div class="p-2 border rounded">{{ item.size }}</div></label>
+        {% endfor %}
         </div>
         <a href="{{ item.get_add_to_cart_url }}">
           <div class="btn bg-color-at text-white mt-4">
@@ -43,6 +56,7 @@
           </div>
         </a>
       </div>
+    {% endfor %}
     </div>
   </div>
   <p class="color-at text-center font-weight-light h5 mt-4">Veja também</p>

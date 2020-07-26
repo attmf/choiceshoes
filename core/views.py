@@ -24,7 +24,9 @@ def create_ref_code():
 
 def home(request):
     context = {
-        'items': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0')
+        'items_destaques': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Destaques"'),
+        'items_imperdiveis': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Imperdiveis"'),
+        'items_ofertas': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Nossas Ofertas"')
     }
     return render(request, "home.html", context)
 
