@@ -257,16 +257,16 @@ p {
     font-size: 18px;
 }
 
-#carouselExampleControls {
+#carouselExampleControls, #carouselExampleControls1, #carouselExampleControls2 {
     display: none;
 }
 
 @media screen and (max-width: 768px) {
-    #carouselExampleControls {
+    #carouselExampleControls, #carouselExampleControls1, #carouselExampleControls2 {
         display: block;
     }
 
-    #produtos-carousel-destaques {
+    #produtos-carousel-destaques, #produtos-carousel-imperdiveis, #produtos-carousel-ofertas {
         display: none;
     }
 
@@ -281,5 +281,11 @@ p {
 
     .footer-socials a i {
         font-size: 30px;
+    }
+}
+
+@media (max-width: 740px) {
+    .carousel {
+        height: auto !important;
     }
 }
