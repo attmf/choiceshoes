@@ -42,7 +42,7 @@ def itemDetail(request, slug):
     context = {
         'items': Item.objects.filter(slug=slug),
         'itemsDetail': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_itemdetail"."size", "core_itemdetail"."color", "core_itemdetail"."image" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_item"."slug" like "' + str(slug) + '" AND "core_itemdetail"."stock" > 0'),
-        'itemsRec': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0'),
+        'itemsRec': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0')
     }
     return render(request, "product.html", context)
 

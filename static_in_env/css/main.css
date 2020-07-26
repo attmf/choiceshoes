@@ -246,7 +246,7 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-    .footer-section > div {
+    .footer-section>div {
         margin-bottom: 10px;
     }
 
