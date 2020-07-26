@@ -224,7 +224,6 @@ p {
 
 .theme-footer {
     border-top: 4px solid #57D4CF;
-    background-color: #57D4CF33;
 }
 
 .footer-links {
@@ -245,17 +244,25 @@ p {
     margin: 0;
 }
 
+.product-card {
+    padding: 30px;
+}
+
+.product-card div span {
+    font-size: 18px;
+}
+
 @media screen and (max-width: 768px) {
     .footer-section>div {
         margin-bottom: 10px;
     }
 
     .footer-links {
-        font-size: 25px;
+        font-size: 18px;
         margin: 20px 0;
     }
 
     .footer-socials a i {
-        font-size: 40px;
+        font-size: 30px;
     }
 }
