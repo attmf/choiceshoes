@@ -265,7 +265,7 @@ p {
     #carouselExampleControls, #carouselExampleControls1, #carouselExampleControls2 {
         display: block;
     }
-
+    
     #produtos-carousel-destaques, #produtos-carousel-imperdiveis, #produtos-carousel-ofertas {
         display: none;
     }
