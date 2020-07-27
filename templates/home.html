@@ -2,8 +2,17 @@
 
 {% block content %}
 <main>
-	<div id="banner">
-		<img src="assets/images/banner01.png" alt="banner" class="w-100">
+	<div id="banner" class="mt-2">
+		<div class="d-lg-none d-md-none">
+			{% for banner in banners_mob %}
+			<img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="w-100">
+			{% endfor %}
+		</div>
+		<div class="d-lg-block d-md-block d-none">
+			{% for banner in banners_desk %}
+			<img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="w-100">
+			{% endfor %}
+		</div>
 	</div>
 
 	<div class="container">
@@ -16,6 +25,7 @@
 				<div class="carousel-item" id="{{ item.id }}">
 					<div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
 						<div class="text-center">
+							<a href="{{ item.get_absolute_url }}">
 							<img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
 							<span class="color-at m-0">{{ item.title }}</span>
 							<div class="d-block d-sm-flex justify-content-center">
@@ -26,7 +36,6 @@
 								<p class="m-1">R$ {{ item.price }}</p>
 								{% endif %}
 							</div>
-							<a href="{{ item.get_absolute_url }}">
 								<button class="btn bg-color-at text-white mt-2">
 									Eu quero
 								</button>
@@ -51,6 +60,7 @@
 			{% for item in items_destaques %}
 			<div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
 				<div class="text-center">
+					<a href="{{ item.get_absolute_url }}">
 					<img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
 					<span class="color-at m-0">{{ item.title }}</span>
 					<div class="d-block d-sm-flex justify-content-center">
@@ -61,7 +71,6 @@
 						<p class="m-1">R$ {{ item.price }}</p>
 						{% endif %}
 					</div>
-					<a href="{{ item.get_absolute_url }}">
 						<button class="btn bg-color-at text-white mt-2">
 							Eu quero
 						</button>
@@ -80,6 +89,7 @@
 				<div class="carousel-item" id="{{ item.id }}">
 					<div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
 						<div class="text-center">
+							<a href="{{ item.get_absolute_url }}">
 							<img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
 							<span class="color-at m-0">{{ item.title }}</span>
 							<div class="d-block d-sm-flex justify-content-center">
@@ -90,7 +100,6 @@
 								<p class="m-1">R$ {{ item.price }}</p>
 								{% endif %}
 							</div>
-							<a href="{{ item.get_absolute_url }}">
 								<button class="btn bg-color-at text-white mt-2">
 									Eu quero
 								</button>
@@ -143,6 +152,7 @@
 				<div class="carousel-item" id="{{ item.id }}">
 					<div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
 						<div class="text-center">
+							<a href="{{ item.get_absolute_url }}">
 							<img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
 							<span class="color-at m-0">{{ item.title }}</span>
 							<div class="d-block d-sm-flex justify-content-center">
@@ -153,7 +163,6 @@
 								<p class="m-1">R$ {{ item.price }}</p>
 								{% endif %}
 							</div>
-							<a href="{{ item.get_absolute_url }}">
 								<button class="btn bg-color-at text-white mt-2">
 									Eu quero
 								</button>

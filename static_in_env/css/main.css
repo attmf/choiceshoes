@@ -198,11 +198,6 @@ a:hover {
     padding: 2px;
 }
 
-.img-prod-item:hover {
-    border: #57D4CF solid 2px;
-    border-radius: 2px;
-    padding: 0px;
-}
 
 .bg-gray {
     background-color: #eeeeee;
@@ -265,13 +260,14 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+
     #carouselExampleControls,
     #carouselExampleControls1,
     #carouselExampleControls2,
     #carouselExampleControls3 {
         display: block;
     }
-    
+
     #produtos-carousel-destaques,
     #produtos-carousel-imperdiveis,
     #produtos-carousel-ofertas,

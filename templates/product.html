@@ -15,131 +15,131 @@ padding: 0px!important;
 
 {% block content %}
 <section>
-  <div class="d-block d-lg-block mt-5">
-    {% for item in items %}
-    <div class="row">
-      <div class="col-12 col-md-3">
-        <p class="color-at m-0 h3">{{ item.title }}</p>
-        {{ item.description }}
-      </div>
-      <div class="col-12 col-md-5">
-        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-100 m-0">
-      </div>
-      <div class="col-12 col-md-4">
-
-        <div class="d-flex color-at">
-          {% if item.discount_price %}
-          <p class="m-1 h2">R$ {{ item.discount_price }}</p>
-          <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
-          {% else %}
-          <p class="m-1 h2">R$ {{ item.price }}</p>
-          {% endif %}
-        </div>
-        <p class="m-1"><span class="text-black-50">Cor: </span>Creme</p>
-        <div class="d-flex mt-3">
-          {% for item in itemsDetail %}
-          <input type="radio" name="cor" id="{{ item.color }}" checked="checked" />
-          <label for="{{ item.color }}"><img src="{{ item.image.url }}" alt="produto" class="img-prod-item"></label>
-          {% endfor %}
-        </div>
-
-        <p class="color-at mt-4">Qual seu tamanho?</p>
-        <div class="d-flex">
-          {% for item in itemsDetail %}
-          <input type="radio" name="tamanho" id="{{ item.size }}" checked="checked" />
-          <label for="{{ item.size }}">
-            <div class="p-2 rounded">{{ item.size }}</div>
-          </label>
-          {% endfor %}
-        </div>
-        <a href="{{ item.get_add_to_cart_url }}">
-          <div class="btn bg-color-at text-white mt-4">
-            <p class="text-uppercase m-0">eu quero</p>
-          </div>
-        </a>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <p class="color-at text-center font-weight-light h5 mt-4">Veja também</p>
-
-  <div class="row" id="produtos-carousel-destaques">
-    {% for item in itemsRec %}
-    <div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
-      <div class="text-center">
-        <img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
-        <span class="color-at m-0">{{ item.title }}</span>
-        <div class="d-block d-sm-flex justify-content-center">
-          {% if item.discount_price %}
-          <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
-          <p class="m-1">R$ {{ item.discount_price }}</p>
-          {% else %}
-          <p class="m-1">R$ {{ item.price }}</p>
-          {% endif %}
-        </div>
-        <a href="{{ item.get_absolute_url }}">
-          <button class="btn bg-color-at text-white mt-2">
-            Eu quero
-          </button>
-        </a>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  <!-- Carousel Mobile -->
-  <div id="carouselExampleControls3" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      {% for item in itemsRec %}
-      <div class="carousel-item" id="{{ item.id }}">
-        <div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
-          <div class="text-center">
-            <img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
-            <span class="color-at m-0">{{ item.title }}</span>
-            <div class="d-block d-sm-flex justify-content-center">
-              {% if item.discount_price %}
-              <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
-              <p class="m-1">R$ {{ item.discount_price }}</p>
-              {% else %}
-              <p class="m-1">R$ {{ item.price }}</p>
-              {% endif %}
+    <div class="d-block d-lg-block mt-3 container">
+        {% for item in items %}
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-100 m-0">
             </div>
-            <a href="{{ item.get_absolute_url }}">
-              <button class="btn bg-color-at text-white mt-2">
-                Eu quero
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <!-- ./Carousel Mobile -->
+            <div class="col-12 col-md-4">
+                <div>
+                    <p class="color-at m-0 text-center">{{ item.title }}</p>
+                    {% if item.discount_price %}
+                    <p class="m-1 text-center"><span class="m-1 text-black-50">R$ {{ item.price }}</span> R$ {{ item.discount_price }}</p>
+                    {% else %}
+                    <p class="m-1 text-center">R$ {{ item.price }}</p>
+                    {% endif %}
+                </div>
+                <p class="m-1"><span class="text-black-50">Cor: </span>Creme</p>
+                <div class="d-flex mt-3">
+                    {% for item in itemsDetail %}
+                    <input class="position-absolute" type="radio" name="cor" id="{{ item.color }}" checked="checked" />
+                    <label for="{{ item.color }}"><img src="{{ item.image.url }}" alt="produto"
+                            class="img-prod-item"></label>
+                    {% endfor %}
+                </div>
 
-  <div class="fixed-bottom row bg-white p-1 shadow-lg">
-    <div class="col-2">
-      <img src="{{ item.image.url }}" alt="produto" class="img-prod-sm">
-    </div>
-    <div class="col-4 d-flex align-items-center mx-3">
-      <p class="m-0">R$ 129.90</p>
-    </div>
-    <div class="col-3 d-flex align-items-center">
-      <a href="{{ item.get_add_to_cart_url }}">
-        <div class="btn bg-color-at text-white float-right">
-          <p class="text-uppercase m-0">comprar</p>
+                <p class="color-at mt-4">Qual seu tamanho?</p>
+                <div class="d-flex">
+                    {% for item in itemsDetail %}
+                    <input class="border rounded position-absolute"type="radio" name="tamanho" id="{{ item.size }}" checked="checked" />
+                    <label for="{{ item.size }}">
+                        <div class="p-2">{{ item.size }}</div>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <p class="color-at mt-4">Mais informações</p>
+                {{ item.description }}
+                <a class="d-flex justify-content-center" href="{{ item.get_add_to_cart_url }}">
+                    <div class="btn bg-color-at text-white mt-4">
+                        <p class="text-uppercase m-0">eu quero</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-      </a>
     </div>
-  </div>
+    <p class="color-at text-center font-weight-light h5 mt-4">Veja também</p>
+
+    <div class="row" id="produtos-carousel-destaques">
+        {% for item in itemsRec %}
+        <div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
+            <div class="text-center">
+                <img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
+                <span class="color-at m-0">{{ item.title }}</span>
+                <div class="d-block d-sm-flex justify-content-center">
+                    {% if item.discount_price %}
+                    <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
+                    <p class="m-1">R$ {{ item.discount_price }}</p>
+                    {% else %}
+                    <p class="m-1">R$ {{ item.price }}</p>
+                    {% endif %}
+                </div>
+                <a href="{{ item.get_absolute_url }}">
+                    <button class="btn bg-color-at text-white mt-2">
+                        Eu quero
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Carousel Mobile -->
+    <div id="carouselExampleControls3" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for item in itemsRec %}
+            <div class="carousel-item" id="{{ item.id }}">
+                <div class="col-lg-4 col-md-4 col-12 mb-3 product-card">
+                    <div class="text-center">
+                        <img src="{{ item.image.url }}" alt="produto01" class="w-100 m-0">
+                        <span class="color-at m-0">{{ item.title }}</span>
+                        <div class="d-block d-sm-flex justify-content-center">
+                            {% if item.discount_price %}
+                            <p class="m-1 text-black-50"><strike>R$ {{ item.price }}</strike></p>
+                            <p class="m-1">R$ {{ item.discount_price }}</p>
+                            {% else %}
+                            <p class="m-1">R$ {{ item.price }}</p>
+                            {% endif %}
+                        </div>
+                        <a href="{{ item.get_absolute_url }}">
+                            <button class="btn bg-color-at text-white mt-2">
+                                Eu quero
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- ./Carousel Mobile -->
+
+    <div class="fixed-bottom row bg-white p-1 shadow-lg">
+        <div class="col-2">
+            <img src="{{ item.image.url }}" alt="produto" class="img-prod-sm">
+        </div>
+        <div class="col-4 d-flex align-items-center mx-3">
+            <p class="m-0">R$ 129.90</p>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+            <a href="{{ item.get_add_to_cart_url }}">
+                <div class="btn bg-color-at text-white float-right">
+                    <p class="text-uppercase m-0">comprar</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </section>
 
 {% endblock content %}

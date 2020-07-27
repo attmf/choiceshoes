@@ -41,6 +41,15 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+class Banner(models.Model):
+    title = models.CharField(max_length=100)
+    mobile = models.BooleanField()
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.title
+
+
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()

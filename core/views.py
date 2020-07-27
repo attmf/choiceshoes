@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, ItemDetail
+from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, ItemDetail, Banner
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -26,7 +26,9 @@ def home(request):
     context = {
         'items_destaques': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Destaques"'),
         'items_imperdiveis': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Imperdiveis"'),
-        'items_ofertas': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Nossas Ofertas"')
+        'items_ofertas': Item.objects.raw('SELECT DISTINCT "core_item"."ID", "core_item"."TITLE", "core_item"."PRICE", "core_item"."DISCOUNT_PRICE", "core_item"."LABEL", "core_item"."SLUG", "core_item"."DESCRIPTION", "core_item"."IMAGE", "core_item"."GROUP", "core_item"."CATEGORY" FROM "core_item" INNER JOIN "core_itemdetail" ON "core_itemdetail"."item_id" = "core_item"."id" WHERE "core_itemdetail"."stock" > 0 and "core_item"."GROUP" like "Nossas Ofertas"'),
+        'banners_desk': Banner.objects.filter(mobile=False),
+        'banners_mob': Banner.objects.filter(mobile=True),
     }
     return render(request, "home.html", context)
 
