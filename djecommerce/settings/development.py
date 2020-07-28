@@ -1,5 +1,7 @@
 from .base import *
 
+import django_heroku
+
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1']
 

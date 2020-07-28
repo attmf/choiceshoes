@@ -1,5 +1,7 @@
 from .base import *
 
+import django_heroku
+
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['ip-address', 'www.your-website.com']
 
@@ -23,3 +25,5 @@ DATABASES = {
 
 STRIPE_PUBLIC_KEY = config('STRIPE_LIVE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_LIVE_SECRET_KEY')
+
+django_heroku.settings(locals())
