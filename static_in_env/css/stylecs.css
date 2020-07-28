@@ -33,12 +33,6 @@
 	src: url("http://127.0.0.1:8888/static/font/roboto/FjallaOne-Regular.ttf");
 }
 
-body {
-	background-image: url('images/fundo.png');
-	background-attachment: fixed;
-	font-family: Fjalla;
-}
-
 div.clearfix {
 	overflow: auto;
 }
@@ -92,23 +86,6 @@ div.conteudo {
 	width: 100%;
 }
 
-input.search {
-	width: 25%;
-	float: left;
-	position: relative;
-	padding-left: 7px;
-	padding-right: 7px;
-	min-height: 1px;
-	bottom: 6px;
-	border-radius: 5px;
-	border: none;
-	font-size: 14px;
-	background: #eee;
-	background-image: url('images/icons/iconepesquisa.png');
-	background-position: 95%;
-	background-repeat: no-repeat;
-	padding: 10px;
-}
 
 input.search.fix {
 	width: 20%;
