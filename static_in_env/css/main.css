@@ -275,7 +275,7 @@ p {
         display: none;
     }
 
-    .footer-section > div {
+    .footer-section>div {
         margin-bottom: 10px;
     }
 
@@ -293,4 +293,8 @@ p {
     .carousel {
         height: auto !important;
     }
+}
+
+.border-none {
+    border: none !important;
 }
