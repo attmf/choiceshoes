@@ -5,7 +5,7 @@ bonjour-py==0.3
 configparser==4.0.2
 contextlib2==0.6.0.post1
 distlib==0.3.1
-Django==1.11.29
+Django==2.2.24
 env==0.1.0
 filelock==3.0.12
 importlib-metadata==1.7.0
